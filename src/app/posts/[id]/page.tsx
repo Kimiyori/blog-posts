@@ -1,5 +1,4 @@
 import { postsApi } from "@/lib/api";
-import { Post } from "@/types/post";
 import { Metadata } from "next";
 import { InvalidPostId, PostNotFound, PostDetail } from "./_components";
 
@@ -10,7 +9,7 @@ interface PostPageProps {
 export async function generateStaticParams() {
   try {
     const response = await postsApi.getAllPosts();
-    const posts: Post[] = response.data;
+    const posts = response.data;
 
     return posts.map((post) => ({
       id: post.id.toString(),
@@ -27,7 +26,7 @@ export async function generateMetadata({
   const { id } = await params;
   try {
     const response = await postsApi.getPostById(+id);
-    const post: Post = response.data;
+    const post = response.data;
 
     return {
       title: post.title,

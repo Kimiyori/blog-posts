@@ -4,7 +4,7 @@ import { LoadingSpinner } from "@/components/shared";
 import { CustomError } from "@/components/shared";
 import { PageHeader, PostsGrid, usePosts } from "./_components";
 
-function HomePageContent() {
+export default function HomePage() {
   const { data: posts, isLoading, error } = usePosts();
 
   if (isLoading) {
@@ -25,6 +25,3 @@ function HomePageContent() {
   );
 }
 
-export default function HomePage() {
-  return <HomePageContent />;
-}

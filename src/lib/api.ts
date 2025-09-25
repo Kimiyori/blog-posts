@@ -1,4 +1,5 @@
-import axios from "axios";
+import { Post } from "@/types/post";
+import axios, { AxiosResponse } from "axios";
 
 const API_BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -10,6 +11,7 @@ export const api = axios.create({
 });
 
 export const postsApi = {
-  getAllPosts: () => api.get("/posts"),
-  getPostById: (id: number) => api.get(`/posts/${id}`),
+  getAllPosts: (): Promise<AxiosResponse<Post[]>> => api.get<Post[]>("/posts"),
+  getPostById: (id: number): Promise<AxiosResponse<Post>> =>
+    api.get<Post>(`/posts/${id}`),
 };

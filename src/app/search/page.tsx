@@ -11,7 +11,7 @@ import {
   usePosts,
 } from "./_components";
 
-function SearchPageContent() {
+export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: posts, isLoading, error } = usePosts();
 
@@ -34,7 +34,7 @@ function SearchPageContent() {
       "Не удалось загрузить посты для поиска. Обновите страницу или попробуйте позже."
     );
   }
-
+  const searchPostsExist = searchQuery.trim() && filteredPosts.length > 0
   return (
     <div className="max-w-7xl mx-auto">
       <PageHeader title="Поиск статей" />
@@ -49,7 +49,7 @@ function SearchPageContent() {
         resultsCount={filteredPosts.length}
       />
 
-      {searchQuery.trim() && filteredPosts.length > 0 && (
+      {searchPostsExist && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
           {filteredPosts.map((post) => (
             <SearchPostCard key={post.id} post={post} />
@@ -60,8 +60,4 @@ function SearchPageContent() {
       {!searchQuery.trim() && <SearchEmptyState />}
     </div>
   );
-}
-
-export default function SearchPage() {
-  return <SearchPageContent />;
 }
