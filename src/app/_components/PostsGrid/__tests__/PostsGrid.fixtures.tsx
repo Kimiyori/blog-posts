@@ -8,7 +8,7 @@ import type { Post } from "@/types/post";
 interface PostsGridFixture {
   posts: Post[];
   renderPostsGrid: RenderResult;
-  container: Locator;
+  container: HTMLElement|null;
   emptyState: Locator | null;
   postCards: HTMLElement[];
 }
@@ -27,7 +27,7 @@ export const PostsGridIt = BaseIt.extend<PostsGridFixture>({
   },
   container: async ({ renderPostsGrid }, use) => {
     const container = renderPostsGrid.container.querySelector("div");
-    await use(container as any);
+    await use(container);
   },
   emptyState: async ({ renderPostsGrid, posts }, use) => {
     if (!posts || posts.length === 0) {

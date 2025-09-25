@@ -7,8 +7,8 @@ import { LoadingSpinner } from "../LoadingSpinner";
 interface LoadingSpinnerFixture {
   message: string;
   renderLoadingSpinner: RenderResult;
-  container: Locator;
-  spinner: Locator;
+  container: HTMLElement | null;
+  spinner: Element | null;
   messageElement: Locator;
 }
 
@@ -26,12 +26,12 @@ export const LoadingSpinnerIt = BaseIt.extend<LoadingSpinnerFixture>({
   },
   container: async ({ renderLoadingSpinner }, use) => {
     const container = renderLoadingSpinner.container.querySelector("div");
-    await use(container as any);
+    await use(container);
   },
   spinner: async ({ renderLoadingSpinner }, use) => {
     const spinner =
       renderLoadingSpinner.container.querySelector(".animate-spin");
-    await use(spinner as any);
+    await use(spinner);
   },
   messageElement: async ({ renderLoadingSpinner, message }, use) => {
     const messageEl = renderLoadingSpinner.getByText(message);

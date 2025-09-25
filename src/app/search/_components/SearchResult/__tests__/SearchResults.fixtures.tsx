@@ -1,4 +1,3 @@
-import type { Locator } from "@vitest/browser/context";
 import { type RenderResult, render } from "vitest-browser-react";
 import { BaseIt } from "@/tests/baseTest";
 import { SearchResults } from "@/app/search/_components/SearchResult/SearchResults";
@@ -7,9 +6,9 @@ interface SearchResultsFixture {
   searchQuery: string;
   resultsCount: number;
   renderSearchResults: RenderResult;
-  container: Locator | null;
-  message: Locator | null;
-  icon: Locator | null;
+  container: HTMLElement | null;
+  message: HTMLElement | null;
+  icon: HTMLElement | null;
 }
 
 export const SearchResultsIt = BaseIt.extend<SearchResultsFixture>({
@@ -38,7 +37,7 @@ export const SearchResultsIt = BaseIt.extend<SearchResultsFixture>({
       await use(null);
     } else {
       const container = renderSearchResults.container.querySelector("div");
-      await use(container as any);
+      await use(container);
     }
   },
   message: async ({ renderSearchResults, searchQuery }, use) => {
@@ -46,7 +45,7 @@ export const SearchResultsIt = BaseIt.extend<SearchResultsFixture>({
       await use(null);
     } else {
       const paragraph = renderSearchResults.container.querySelector("p");
-      await use(paragraph as any);
+      await use(paragraph);
     }
   },
   icon: async ({ renderSearchResults, searchQuery }, use) => {
@@ -54,7 +53,7 @@ export const SearchResultsIt = BaseIt.extend<SearchResultsFixture>({
       await use(null);
     } else {
       const span = renderSearchResults.container.querySelector("span");
-      await use(span as any);
+      await use(span);
     }
   },
 });
