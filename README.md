@@ -2,7 +2,7 @@
 
 Приложение для просмотра и поиска статей.
 
-Github Pages - [text](https://kimiyori.github.io/blog-posts)
+Github Pages - https://kimiyori.github.io/blog-posts
 
 ## 🚀 Особенности
 
